@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/05/03/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>搭建博客踩坑指南</title>
+    <url>/2022/05/06/%E5%8D%9A%E5%AE%A2%E8%B8%A9%E5%9D%91/</url>
+    <content><![CDATA[<h1 id="愉快踩坑之旅"><a href="#愉快踩坑之旅" class="headerlink" title="愉快踩坑之旅"></a>愉快踩坑之旅</h1><h2 id="搭建过程之中的踩坑之路"><a href="#搭建过程之中的踩坑之路" class="headerlink" title="搭建过程之中的踩坑之路"></a>搭建过程之中的踩坑之路</h2><ul>
+<li>tips: 本文所有的搭建以及运营博文的平台均为Linux</li>
+<li>坑1：在本地已经完成搭建之后，涉及到后续将本地的博客链接到github上此时就会有问题。<br>(1) 当出现无法链接到github，并报2021年开始取消了ssh链接，此时需要使用个人令牌访问github<br>解决方法：在自己的github settings里面找到自己的个人令牌，并按照自己的需求申请所需要的设定令牌的基本的可以使用的时间，建议可以对于自己的博客申请永久，并再<strong>hexo d</strong>之后要求输入自己的github帐号密码的时候，直接在密码的地方键入你的个人令牌。  </li>
+<li>申请个人令牌的流程: settings-&gt; Developer settings -&gt; Personal access token<img src="/2022/05/06/%E5%8D%9A%E5%AE%A2%E8%B8%A9%E5%9D%91/0506-1.png" class="" title="image1"></li>
+<li>坑2：由于众所周知的原因在推送到github上的时候，有很多时候<strong>hexo d</strong>会出现超时的问题</li>
+<li>解决方法，修改设置里面的**_config.yml**文件，一定注意不是主题里面的设置文件，而是你的博客里面的根目录里面的设置文件。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//将你的仓库的地址修改为如下所示的格式，别用https</span><br><span class="line"></span><br><span class="line">git@github.com:YOURNAME/YOURNAME.github.io.git</span><br><span class="line"></span><br><span class="line">//只用将YOURNAME修改为你自己的github帐号的名字即可</span><br></pre></td></tr></table></figure></li>
+<li>坑3(其实也可以说是强迫症需要改)</li>
+<li>有时候在你<strong>hexo g</strong>之后，可能会出现一堆的warnning，其实警告没多大影响，就是出现几个警告感觉有点难看，随需要更改,相关的警告如下图所示  <img src="/2022/05/06/%E5%8D%9A%E5%AE%A2%E8%B8%A9%E5%9D%91/0506-2.png" class="" title="image2"></li>
+<li>很明显，就是node.js出了问题，在使用node -v查看node.js的版本的时候，发现版本是16的版本，就是版本太高了,eg: n v12.28.20 命令可以将node.js的版本降低到你所要的版本即可。<h2 id="主题魔改之路-正在更新"><a href="#主题魔改之路-正在更新" class="headerlink" title="主题魔改之路(正在更新)"></a>主题魔改之路(正在更新)</h2></li>
+<li>关于修改配置文件的问题<br><strong>别在</strong>原始的配置文件之中修改，出了问题很难再去改，重新建一个**_config.butterfly.yml<strong>文件，把</strong>butterfly** 主题里面的文件复制过来，并放在博客的根目录<br>Linux下拷贝文件到指定的目录的命令如下<br>&#96;&#96;&#96;&#96;<br>cp xxx.yml &#x2F;home&#x2F;dcx&#x2F;blog  #打开所在文件的terminal，并把你想要拷贝的文件xxx移到你想要的目录<br>&#96;&#96;&#96;</li>
+<li>关于在menu里面修改的问题<br>一定记得，在将menu改为中文之后，并去除#之后，&#x2F;和||之间的空格一定要去除，此时才能呢个访问到指定的界面，否则会报错。如下图的更改格式  <img src="/2022/05/06/%E5%8D%9A%E5%AE%A2%E8%B8%A9%E5%9D%91/0506-3.png" class="" title="image3"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo, 踩坑</tag>
+      </tags>
+  </entry>
+</search>
